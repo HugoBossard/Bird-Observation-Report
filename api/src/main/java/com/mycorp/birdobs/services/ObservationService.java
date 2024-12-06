@@ -2,6 +2,7 @@ package com.mycorp.birdobs.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,16 @@ public class ObservationService {
         return toDto(savedObservation);
     }
 
+    public ObservationDto findById(Integer id) {
+        Optional<Observation> observationInDb = observationDao.findById(id);
+
+        if (!observationInDb.isPresent()) {
+            return null;
+        }
+
+        return toDto(observationInDb.get());
+    }
+
     private Observation toEntity(ObservationDto observationDto) {
         Observation observation = new Observation();
 
@@ -32,7 +43,7 @@ public class ObservationService {
         observation.setEspece(observationDto.getEspece());
         observation.setNombre(observationDto.getNombre());
         observation.setVille(observationDto.getVille());
-        observation.setDate_pub(observationDto.getDate_pub());
+        observation.setDatePub(observationDto.getDatePub());
 
         return observation;
     }
@@ -45,7 +56,7 @@ public class ObservationService {
         observationDto.setEspece(observation.getEspece());
         observationDto.setNombre(observation.getNombre());
         observationDto.setVille(observation.getVille());
-        observationDto.setDate_pub(observation.getDate_pub());
+        observationDto.setDatePub(observation.getDatePub());
 
         return observationDto;
     }

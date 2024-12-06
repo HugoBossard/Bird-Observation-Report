@@ -8,7 +8,7 @@ public class ObservationDto {
     private String espece;
     private Integer nombre;
     private String ville;
-    private Timestamp date_pub;
+    private Timestamp datePub;
 
     public Integer getReportID() {
         return reportID;
@@ -50,11 +50,11 @@ public class ObservationDto {
         this.ville = ville;
     }
 
-    public Timestamp getDate_pub() {
-        return date_pub;
+    public Timestamp getDatePub() {
+        return datePub;
     }
 
-    public void setDate_pub(Timestamp date_pub) {
-        this.date_pub = date_pub;
+    public void setDatePub(Timestamp datePub) {
+        this.datePub = datePub;
     }
 }

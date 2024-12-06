@@ -2,6 +2,9 @@ package com.mycorp.birdobs.models;
 
 import java.sql.Timestamp;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +20,10 @@ public class Observation {
     private String espece;
     private Integer nombre;
     private String ville;
-    private Timestamp date_pub;
+
+    @Column(name = "date_pub", updatable = false)
+    @CreationTimestamp
+    private Timestamp datePub;
 
     public Integer getReportID() {
         return reportID;
@@ -59,12 +65,12 @@ public class Observation {
         this.ville = ville;
     }
 
-    public Timestamp getDate_pub() {
-        return date_pub;
+    public Timestamp getDatePub() {
+        return datePub;
     }
 
-    public void setDate_pub(Timestamp date_pub) {
-        this.date_pub = date_pub;
+    public void setDatePub(Timestamp datePub) {
+        this.datePub = datePub;
     }
 
     @Override
@@ -75,7 +81,7 @@ public class Observation {
             ", espece=" + espece +
             ", nombre=" + nombre +
             ", ville=" + ville +
-            ", date_pub=" + date_pub +
+            ", date_pub=" + datePub +
             ")";
     }
 }
