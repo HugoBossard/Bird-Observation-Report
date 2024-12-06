@@ -32,9 +32,9 @@ Exemple, si je veux ajouter un commit car j'ai développé un nouveau composant 
 
 ## Nommage des composants et des fichiers
 
-**Langue à respecter pour le nommage** : `Anglais` -> par exemple : observation-controller
+**Langue à respecter pour le nommage** : `Anglais` -> par exemple : ObservationController
 
-- Le nom des fichiers devra avoir un nommage de type Kebab Case : nom-fichier
+- Le nom des fichiers devra avoir un nommage de type Pascal Case : NomFichier
 
 
 - Le nom des classes devra avoir un nommage de type Pascal Case: NomDeMaClasse
