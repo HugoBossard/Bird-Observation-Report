@@ -35,6 +35,54 @@ public class ObservationService {
         return toDto(observationInDb.get());
     }
 
+    private Observation findObservationById(Integer id) {
+        Optional<Observation> observationInDb = observationDao.findById(id);
+
+        if (!observationInDb.isPresent()) {
+            return null;
+        }
+
+        return observationInDb.get();
+    }
+
+    public ObservationDto updateById(Integer id, ObservationDto observation) {
+        Observation observationInDb = findObservationById(id);
+
+        if (observationInDb == null) {
+            return null;
+        }
+
+        // Mettre à jour les champs nécessaires
+        if (observation.getNom() != null) {
+            observationInDb.setNom(observation.getNom());
+        }
+        if (observation.getEspece() != null) {
+            observationInDb.setEspece(observation.getEspece());
+        }
+        if (observation.getNombre() != null) {
+            observationInDb.setNombre(observation.getNombre());
+        }
+        if (observation.getVille() != null) {
+            observationInDb.setVille(observation.getVille());
+        }
+
+        Observation updatedObservation = observationDao.save(observationInDb);
+
+        return toDto(updatedObservation);
+    }
+
+    public boolean deleteById(Integer id) {
+        Observation observationInDb = findObservationById(id);
+
+        if (observationInDb == null) {
+            return false;
+        }
+
+        observationDao.delete(observationInDb);
+
+        return true;
+    }
+
     private Observation toEntity(ObservationDto observationDto) {
         Observation observation = new Observation();
 
