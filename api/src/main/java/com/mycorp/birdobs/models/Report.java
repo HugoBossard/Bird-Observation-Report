@@ -1,13 +1,28 @@
-package com.mycorp.birdobs.dto;
+package com.mycorp.birdobs.models;
 
 import java.sql.Timestamp;
 
-public class ObservationDto {
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Report {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer reportID;
+
     private String nom;
     private String espece;
     private Integer nombre;
     private String ville;
+
+    @Column(name = "date_pub", updatable = false)
+    @CreationTimestamp
     private Timestamp datePub;
 
     public Integer getReportID() {
@@ -56,5 +71,17 @@ public class ObservationDto {
 
     public void setDatePub(Timestamp datePub) {
         this.datePub = datePub;
+    }
+
+    @Override
+    public String toString() {
+        return "Report(" + 
+            "id=" + reportID +
+            ", nom=" + nom +
+            ", espece=" + espece +
+            ", nombre=" + nombre +
+            ", ville=" + ville +
+            ", date_pub=" + datePub +
+            ")";
     }
 }

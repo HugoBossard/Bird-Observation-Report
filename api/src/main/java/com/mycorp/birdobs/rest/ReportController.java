@@ -12,68 +12,66 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mycorp.birdobs.dto.ObservationDto;
-import com.mycorp.birdobs.services.ObservationService;
-
-
+import com.mycorp.birdobs.dto.ReportDto;
+import com.mycorp.birdobs.services.ReportService;
 
 @RestController
-@RequestMapping("/observation")
-public class ObservationController {
+@RequestMapping("/report")
+public class ReportController {
 
     @Autowired
-    ObservationService observationService;
+    ReportService reportService;
 
     private final static String VERIFY_ID = "/{id:[0-9]+}";
 
     @PostMapping
-    public ResponseEntity<?> addObservationReport(@RequestBody ObservationDto observation) {
-        if (observation.getReportID() != null) {
+    public ResponseEntity<?> addReport(@RequestBody ReportDto report) {
+        if (report.getReportID() != null) {
             return new ResponseEntity<>("Vous ne pouvez pas spécifier l'ID. La base s'occupe de le créer.", HttpStatus.BAD_REQUEST);
         }
 
-        if (observation.getDatePub() != null) {
+        if (report.getDatePub() != null) {
             return new ResponseEntity<>("Vous ne pouvez pas spécifier la date. La base s'occupe de le créer.", HttpStatus.BAD_REQUEST);
         }
 
-        ObservationDto savedObservationReport = observationService.save(observation);
+        ReportDto savedReport = reportService.save(report);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedObservationReport);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedReport);
     }
 
     @GetMapping(VERIFY_ID)
-    public ResponseEntity<ObservationDto> getObservationReportById(@PathVariable Integer id) {
-        ObservationDto observationDto = observationService.findById(id);
+    public ResponseEntity<ReportDto> getReportById(@PathVariable Integer id) {
+        ReportDto reportDto = reportService.findById(id);
 
-        if (observationDto == null) {
+        if (reportDto == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(observationDto, HttpStatus.OK);
+        return new ResponseEntity<>(reportDto, HttpStatus.OK);
     }
 
     @PutMapping(VERIFY_ID)
-    public ResponseEntity<?> updateObservationReportById(@PathVariable Integer id, @RequestBody ObservationDto observation) {
-        if (observation.getReportID() != null) {
+    public ResponseEntity<?> updateReportById(@PathVariable Integer id, @RequestBody ReportDto report) {
+        if (report.getReportID() != null) {
             return new ResponseEntity<>("Vous ne pouvez pas modifier l'ID.", HttpStatus.BAD_REQUEST);
         }
 
-        if (observation.getDatePub() != null) {
+        if (report.getDatePub() != null) {
             return new ResponseEntity<>("Vous ne pouvez pas modifier la date.", HttpStatus.BAD_REQUEST);
         }
         
-        ObservationDto observationUpdated = observationService.updateById(id, observation);
+        ReportDto reportUpdated = reportService.updateById(id, report);
 
-        if (observationUpdated == null) {
+        if (reportUpdated == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(observationUpdated, HttpStatus.OK);
+        return new ResponseEntity<>(reportUpdated, HttpStatus.OK);
     }
 
     @DeleteMapping(VERIFY_ID)
-    public ResponseEntity<Void> deleteObservationReportById(@PathVariable Integer id) {
-        boolean found = observationService.deleteById(id);
+    public ResponseEntity<Void> deleteReportById(@PathVariable Integer id) {
+        boolean found = reportService.deleteById(id);
 
         if (!found) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
