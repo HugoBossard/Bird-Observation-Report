@@ -20,7 +20,7 @@ import com.mycorp.birdobs.services.ReportService;
 public class ReportController {
 
     @Autowired
-    ReportService reportService;
+    private ReportService reportService;
 
     private final static String VERIFY_ID = "/{id:[0-9]+}";
 
@@ -34,9 +34,13 @@ public class ReportController {
             return new ResponseEntity<>("Vous ne pouvez pas spécifier la date. La base s'occupe de le créer.", HttpStatus.BAD_REQUEST);
         }
 
+        if (report.getUserID() == null) {
+            return new ResponseEntity<>("Un report est forcément lié à un utilisateur; vous ne pouvez pas faire ça.", HttpStatus.BAD_REQUEST);
+        }
+
         ReportDto savedReport = reportService.save(report);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedReport);
+        return new ResponseEntity<>(savedReport, HttpStatus.CREATED);
     }
 
     @GetMapping(VERIFY_ID)
@@ -58,6 +62,10 @@ public class ReportController {
 
         if (report.getDatePub() != null) {
             return new ResponseEntity<>("Vous ne pouvez pas modifier la date.", HttpStatus.BAD_REQUEST);
+        }
+
+        if (report.getUserID() != null) {
+            return new ResponseEntity<>("Vous ne pouvez pas modifier l'utilisateur lié au report.", HttpStatus.BAD_REQUEST); 
         }
         
         ReportDto reportUpdated = reportService.updateById(id, report);

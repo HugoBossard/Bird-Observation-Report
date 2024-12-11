@@ -9,6 +9,7 @@ public class ReportDto {
     private Integer nombre;
     private String ville;
     private Timestamp datePub;
+    private Integer userID;
 
     public Integer getReportID() {
         return reportID;
@@ -56,5 +57,13 @@ public class ReportDto {
 
     public void setDatePub(Timestamp datePub) {
         this.datePub = datePub;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 }
