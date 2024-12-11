@@ -2,13 +2,14 @@ package com.mycorp.birdobs.dto;
 
 import java.sql.Timestamp;
 
-public class ObservationDto {
+public class ReportDto {
     private Integer reportID;
     private String nom;
     private String espece;
     private Integer nombre;
     private String ville;
     private Timestamp datePub;
+    private Integer userID;
 
     public Integer getReportID() {
         return reportID;
@@ -56,5 +57,13 @@ public class ObservationDto {
 
     public void setDatePub(Timestamp datePub) {
         this.datePub = datePub;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 }
