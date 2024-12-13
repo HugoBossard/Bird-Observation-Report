@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mycorp.birdobs.PasswordHasher;
 import com.mycorp.birdobs.dao.UserDao;
 import com.mycorp.birdobs.dto.UserDto;
 import com.mycorp.birdobs.models.Users;
@@ -19,6 +20,10 @@ public class UserService {
     private ReportService reportService;
 
     public UserDto save(UserDto userDto) {
+        String hashedPassword = PasswordHasher.hashPassword(userDto.getMdp());
+
+        userDto.setMdp(hashedPassword);
+
         Users user = toEntity(userDto);
         
         Users userSaved = userDao.save(user);
