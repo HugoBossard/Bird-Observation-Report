@@ -6,7 +6,11 @@ L'objectif de ce projet est de créer une API qui permettra de signaler une obse
 
 ## Deployement du serveur
 
-Lancez la commande `npm start` pour un serveur en local. Navigez vers `http://localhost:8080/`.
+1. Lancez la commande `docker-compose up` pour lancer la base de donnée (lancez Docker Deskop précédement).
+
+2. Lancez la commande `mvn spring-boot:run` pour lancer l'API.
+
+3. Lancez la commande `npm start` pour un serveur en local. Navigez vers `http://localhost:3000/`.
 
 ## Création des branches et nommage des commits
 
