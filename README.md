@@ -4,13 +4,15 @@
 
 L'objectif de ce projet est de créer une API qui permettra de signaler une observation d'oiseaux. En indiquant l'espèce, le nombre ou même la ville où ils ont été observés.
 
+Cette API est utilisé par une IHM web qui facilite l'accès aux resources pour récupèrer, poster ou même modifier des observations.
+
 ## Deployement du serveur
 
 1. Lancez la commande `docker-compose up` pour lancer la base de donnée (lancez Docker Deskop précédement).
 
-2. Lancez la commande `mvn spring-boot:run` pour lancer l'API.
+2. Lancez la commande `cd api` puis `mvn spring-boot:run` pour lancer l'API.
 
-3. Lancez la commande `npm start` pour un serveur en local. Navigez vers `http://localhost:3000/`.
+3. Lancez la commande `cd front-web` puis `npm start` sur un nouveau terminal. Navigez ensuite vers `http://localhost:4200/`.
 
 ## Création des branches et nommage des commits
 
@@ -34,11 +36,29 @@ Exemple, si je veux ajouter un commit car j'ai développé un nouveau composant 
 
 ---
 
-## Nommage des composants et des fichiers
+## Nommage des composants et des fichiers Java
 
 **Langue à respecter pour le nommage** : `Anglais` -> par exemple : ObservationController
 
 - Le nom des fichiers devra avoir un nommage de type Pascal Case : NomFichier
+
+
+- Le nom des classes devra avoir un nommage de type Pascal Case: NomDeMaClasse
+
+
+- Le nom des fonctions devra avoir un nommage de type Camel Case : nomDeMaFonction
+
+
+- Le nom des constantes devra avoir un nommage de type Snake Upper Case : NOM_DE_CONSTANTE
+
+
+- Le nom des variables devra avoir un nommage de type Camel Case : nomVariable
+
+## Nommage des composants et des fichiers Angular (typescript, html, scss)
+
+**Langue à respecter pour le nommage** : `Anglais` -> par exemple : page-list-reports
+
+- Le nom des fichiers devra avoir un nommage de type Kebab Case : nom-fichier
 
 
 - Le nom des classes devra avoir un nommage de type Pascal Case: NomDeMaClasse
