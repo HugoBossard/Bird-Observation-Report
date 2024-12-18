@@ -2,8 +2,14 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  { 
+    path: '', 
+    redirectTo: '/auth/sign-in', 
+    pathMatch: 'full' 
+  },
   {
-    path: ''
+    path: 'auth',
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginModule)
   },
   {
     path: "**",
