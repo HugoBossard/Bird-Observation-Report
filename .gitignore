@@ -1,5 +1,6 @@
 /front-web/node_modules
 /front-web/package-lock.json
+/front-web/.angular
 
 .env
 
