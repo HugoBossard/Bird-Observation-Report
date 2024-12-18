@@ -1,5 +1,5 @@
-/node_modules
-package-lock.json
+/front-web/node_modules
+/front-web/package-lock.json
 
 .env
 
